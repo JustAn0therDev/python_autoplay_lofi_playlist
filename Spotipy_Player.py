@@ -1,7 +1,5 @@
-# make the playlist random as well
 import spotipy
 import spotipy.util as util
-import time
 import spotify_credentials
 
 class Spotipy_Player:
@@ -30,5 +28,8 @@ class Spotipy_Player:
     def start_playback(self) -> None:
         self.spotipy_instance.start_playback(self.first_available_device_id, self.context_uri_lofi_playlist)
 
-    def repeat_playback(self, state) -> None:
+    def repeat_playback(self, state: str) -> None:
         self.spotipy_instance.repeat(state, self.first_available_device_id)
+
+    def shuffle_playback(self, state: bool) -> None:
+        self.spotipy_instance.shuffle(state, self.first_available_device_id)
