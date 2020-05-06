@@ -1,6 +1,6 @@
-import Spotipy_Player
+from Spotipy_Player import Spotipy_Player
 
-spotipy_player = Spotipy_Player.Spotipy_Player()
+spotipy_player = Spotipy_Player()
 
 try:
     spotipy_player.get_token()
