@@ -1,32 +1,33 @@
 import spotipy
-import spotipy.util as util
-from constants import USER_MODIFY_PLAYBACK_SCOPE, USER_READ_PLAYBACK_SCOPE, CONTEXT_URI
 import spotify_credentials
+from spotipy import Spotify
+from Token import Token
 
 class SpotipyPlayer:
-    token = ''
     first_available_device_id = ''
-    spotipy_instance = ''
+    spotipy_instance: Spotify = None
 
-    def get_token(self) -> None:
-        self.token = util.prompt_for_user_token(
-        spotify_credentials.USERNAME, 
-        f'{USER_MODIFY_PLAYBACK_SCOPE}%20{USER_READ_PLAYBACK_SCOPE}',
-        spotify_credentials.CLIENT_ID, 
-        spotify_credentials.CLIENT_SECRET,
-        spotify_credentials.REDIRECT_URI)
+    def play(self, context_uri: str, repeat: bool = False, shuffle: bool = False):
+        self.__initialize_spotipy()
+        self.__get_first_available_device()
+        self.__start_playback(context_uri)
+        if repeat:
+            self.__repeat_playback()
+        if shuffle:
+            self.__shuffle_playback()
 
-    def initialize_spotipy_to_get_first_available_device(self) -> None:
-        self.spotipy_instance = spotipy.Spotify(self.token)
+    def __initialize_spotipy(self) -> None:
+        self.spotipy_instance = spotipy.Spotify(Token.get_token())
+
+    def __get_first_available_device(self) -> None: 
         avaliable_devices = self.spotipy_instance.devices()
         self.first_available_device_id = avaliable_devices['devices'][0]['id']
 
-    def start_playback(self) -> None:
-        self.spotipy_instance.start_playback(self.first_available_device_id,
-        CONTEXT_URI)
+    def __start_playback(self, context_uri: str) -> None:
+        self.spotipy_instance.start_playback(self.first_available_device_id, context_uri)
 
-    def repeat_playback(self, state = 'context') -> None:
+    def __repeat_playback(self, state: str = 'context') -> None:
         self.spotipy_instance.repeat(state, self.first_available_device_id)
 
-    def shuffle_playback(self, state: bool = True) -> None:
-        self.spotipy_instance.shuffle(state, self.first_available_device_id)
+    def __shuffle_playback(self, toggle: bool = True) -> None:
+        self.spotipy_instance.shuffle(toggle, self.first_available_device_id)
