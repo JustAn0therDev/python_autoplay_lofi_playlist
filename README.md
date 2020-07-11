@@ -1,10 +1,10 @@
 # python_autoplay_lofi_playlist
-A simple and small python project for playing a lofi playlist on repeat
+A simple and small python project for playing any playlist, song or album on repeat or shuffle (configurable).
 
 ## Notes 
 
-The API integration is not cool as I thought it was. The whole idea of automating Spotify to play a playlist as soon as I bootup my PC needs to have a grant permission first, which is made by prompting the user for permission by clicking on a button.
+I made this project initially only to play a lofi playlist I like a lot, but it came to me that this project should as easily configurable as possible, so now its easier to make the Spotify API play anything else only by changing one line of code.
 
-Yes, I know it can be solved by using a webscraper to click on the button but that's something I didn't want to do, since the whole point of creating the application was to keep things simple and automatic. Feel free to use the project for any other stuff while following the same steps I did to call the Spotify API.
+The API integration was not as cool as I thought it was. The whole idea of automating Spotify to play a playlist as soon as I bootup my Windows PC needs a grant permission first, which is made by prompting the user for permission by clicking on a button. Luckily, there's a library called Spotipy that solves this issue. It's really good and pretty simple, you can find the documentation for it [here](https://spotipy.readthedocs.io/en/2.12.0/).
 
-This was made using the Spotipy Library. It's really good and pretty simple, you can find the documentation for it [here](https://spotipy.readthedocs.io/en/2.12.0/).
+Feel free to use the project as you like.
