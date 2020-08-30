@@ -9,6 +9,8 @@ The API integration was not as cool as I thought it was. The whole idea of autom
 
 Feel free to use the project as you like.
 
+If your player of choice has a public API but it's not Spotify, you may not be able to use the script "as is", but the main logic for requesting to play a song while logged in to your account should be pretty much the same.
+
 ### Credentials
 
 The credentials can follow the same way I made mine, with a few constants on a separate file, but it needs to be generated in the Spotify API dashboard!
